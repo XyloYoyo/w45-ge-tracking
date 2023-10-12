@@ -1,13 +1,14 @@
-package com.example;
+package com.w45GeTracking.ui;
 
+import com.w45GeTracking.W45GeTracking;
 import net.runelite.client.RuneLite;
 import net.runelite.client.externalplugins.ExternalPluginManager;
 
-public class ExamplePluginTest
+public class RunPlugin
 {
 	public static void main(String[] args) throws Exception
 	{
-		ExternalPluginManager.loadBuiltin(ExamplePlugin.class);
+		ExternalPluginManager.loadBuiltin(W45GeTracking.class);
 		RuneLite.main(args);
 	}
 }
