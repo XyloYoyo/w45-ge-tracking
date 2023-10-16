@@ -1,10 +1,10 @@
 package com.w45GeTracking.priceApi;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonParser;
 import com.w45GeTracking.Price;
 import com.w45GeTracking.TransactionInfo;
 
+import javax.inject.Inject;
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -15,7 +15,8 @@ public class PriceApiImpl implements PriceApi {
 
     private final String apiUrl = "http://51.15.241.60/w45-ge-api";
     private final String apiPipelineUrl = "http://51.15.241.60/w45-ge-api/pipeline";
-    private final Gson gson = new Gson();
+    @Inject
+    private Gson gson;
     @Override
     public void addTransaction(TransactionInfo transactionInfo) throws Exception {
         String requestData = gson.toJson(new AddTransactionRequestBody(transactionInfo));

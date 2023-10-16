@@ -1,6 +1,5 @@
 package com.w45GeTracking.priceApi;
 
-import com.google.gson.annotations.Expose;
 import com.w45GeTracking.TransactionInfo;
 
 public class AddTransactionRequestBody {
