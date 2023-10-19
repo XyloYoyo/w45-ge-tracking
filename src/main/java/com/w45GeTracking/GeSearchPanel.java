@@ -9,9 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ScheduledExecutorService;
 import javax.inject.Inject;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.SwingUtilities;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 import com.w45GeTracking.priceApi.PriceApi;
@@ -61,6 +59,11 @@ public class GeSearchPanel extends JPanel
         searchBar.setPreferredSize(new Dimension(100, 30));
         searchBar.setBackground(ColorScheme.DARKER_GRAY_COLOR);
         searchBar.setHoverBackgroundColor(ColorScheme.DARKER_GRAY_HOVER_COLOR);
+        /*
+        I don't know if this is a dev environment issue,
+        but the searchbar text is dark gray by default and afaik there's no options to change it
+         */
+        setColorOfAllTextFields(searchBar, Color.lightGray);
         searchBar.addActionListener(e -> updateSearch());
         searchBar.addClearListener(this::updateSearch);
         return searchBar;
@@ -108,5 +111,14 @@ public class GeSearchPanel extends JPanel
     private void searchBarReady(){
         searchBar.setIcon(IconTextField.Icon.SEARCH);
         searchBar.setEditable(true);
+    }
+    private void setColorOfAllTextFields(JPanel panel, Color color){
+        for (Component c : panel.getComponents()){
+            if(c instanceof JPanel) {
+                setColorOfAllTextFields((JPanel) c, color);
+            }else if(c instanceof JTextField){
+                c.setForeground(color);
+            }
+        }
     }
 }

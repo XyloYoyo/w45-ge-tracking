@@ -12,12 +12,16 @@ import java.lang.annotation.Target;
 
 public class GePluginPanel extends PluginPanel {
     private static final org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(GeSearchPanel.class);
+    private final String warningMessage =
+            "This plugin sends trade data (id, price, buy/sell) to 3rd party servers for price tracking. "
+                    + "Prices reported by this plugin may be inaccurate or false. "
+                    + "Prices could be manipulated by plugin maintainers or other users. ";
     @Inject
-    public GePluginPanel(GeSearchPanel panel) {
+    public GePluginPanel(GeSearchPanel searchPanel) {
         super(false);
-        logger.debug("GePluginPanel panel {}", panel == null);
         setLayout(new BorderLayout());
         setBackground(ColorScheme.DARK_GRAY_COLOR);
-        add(panel, BorderLayout.CENTER);
+        JPanel warningPanel = new WarningPanel(warningMessage, searchPanel);
+        add(warningPanel, BorderLayout.CENTER);
     }
 }
